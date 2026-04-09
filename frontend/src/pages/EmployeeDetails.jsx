@@ -10,7 +10,7 @@ const EmployeeDetails = () => {
         const fetchEmployees = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/notifications/employees', {
+                const res = await axios.get('https://reactproject.onrender.com/api/notifications/employees', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setEmployees(res.data);

@@ -9,7 +9,7 @@ const NotificationList = () => {
     // Fulfills "Mark as Read" [cite: 14, 19]
     const handleMarkAsRead = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/notifications/${id}/read`, {}, {
+            await axios.put(`https://reactproject.onrender.com/api/notifications/${id}/read`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setNotifications(notifications.map(n => 
@@ -23,7 +23,7 @@ const NotificationList = () => {
     // Fulfills "DELETE/notifications/:id" [cite: 19]
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/notifications/${id}`, {
+            await axios.delete(`https://reactproject.onrender.com/api/notifications/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             // Update local state to remove the item from History [cite: 13]

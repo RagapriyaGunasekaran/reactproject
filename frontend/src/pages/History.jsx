@@ -17,7 +17,7 @@ const History = () => {
             try {
                 const token = localStorage.getItem('token');
                 // Fetch the full history for the user
-                const res = await axios.get(`http://localhost:5000/api/notifications/history/${userId}`, {
+                const res = await axios.get(`https://reactproject.onrender.com/api/notifications/history/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setLogs(res.data);

@@ -12,7 +12,7 @@ export const NotificationProvider = ({ children }) => {
         const token = localStorage.getItem('token');
 
         if (userId && token) {
-            const socket = io("http://localhost:5000");
+            const socket = io("https://reactproject.onrender.com");
 
             // Join the private room based on userId 
             socket.emit('join', userId);

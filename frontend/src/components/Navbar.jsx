@@ -5,8 +5,7 @@ import { io } from 'socket.io-client';
 import axios from 'axios';
 import moment from 'moment';
 
-const socket = io('http://localhost:5000', { transports: ['websocket'] });
-
+const socket = io('https://reactproject.onrender.com', { transports: ['websocket'] });
 const Navbar = ({ role }) => {
     const navigate = useNavigate();
     const [notifications, setNotifications] = useState([]);
@@ -20,7 +19,7 @@ const Navbar = ({ role }) => {
         const fetchInitial = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`http://localhost:5000/api/notifications/history/${userId}`, {
+                const res = await axios.get(`https://reactproject.onrender.com/api/notifications/history/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

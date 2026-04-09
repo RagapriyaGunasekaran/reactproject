@@ -4,8 +4,9 @@ import Navbar from '../components/Navbar';
 import moment from 'moment';
 import { io } from 'socket.io-client';
 import { CheckCircle, Clock, Layout } from 'lucide-react';
-
-const socket = io('http://localhost:5000', { transports: ['websocket'] });
+const socket = io('https://reactproject.onrender.com', { 
+    transports: ['websocket'] 
+});
 
 const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
@@ -16,7 +17,7 @@ const Dashboard = () => {
     const fetchTasks = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`http://localhost:5000/api/notifications/history/${userId}`, {
+            const res = await axios.get(`https://reactproject.onrender.com/api/notifications/history/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(res.data);
@@ -51,7 +52,7 @@ const handleMarkAsSeen = async (task) => {
         const currentUsername = localStorage.getItem('username');
 
         // 1. Update DB
-        await axios.put(`http://localhost:5000/api/notifications/${task._id}/read`, {}, {
+        await axios.put(`https://reactproject.onrender.com/api/notifications/${task._id}/read`, {}, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
