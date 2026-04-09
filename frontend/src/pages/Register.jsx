@@ -28,7 +28,7 @@ const Register = () => {
             const { confirmPassword, ...dataToSend } = formData;
 
             // 3. API Call
-            const response = await axios.post('https://reactproject.onrender.com/api/auth/register', dataToSend);
+            const response = await axios.post('${import.meta.env.VITE_API_URL}/api/auth/register', dataToSend);
             
             alert("Employee Registration Successful!");
             navigate('/login');

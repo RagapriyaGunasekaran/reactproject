@@ -23,11 +23,11 @@ const ManagerDashboard = () => {
                 const config = { headers: { Authorization: `Bearer ${token}` } };
                 
                 // Fetch Employees
-                const empRes = await axios.get('https://reactproject.onrender.com/api/notifications/employees', config);
+                const empRes = await axios.get('${import.meta.env.VITE_API_URL}/api/notifications/employees', config);
                 setEmployees(empRes.data);
                 
                 // Fetch History
-                const histRes = await axios.get('https://reactproject.onrender.com/api/notifications/history', config);
+                const histRes = await axios.get('${import.meta.env.VITE_API_URL}/api/notifications/history', config);
                 setHistory(histRes.data);
             } catch (err) {
                 console.error("Dashboard Data Load Error:", err);
@@ -41,7 +41,7 @@ const ManagerDashboard = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const res = await axios.post('https://reactproject.onrender.com/api/notifications/send', task, config);
+            const res = await axios.post('${import.meta.env.VITE_API_URL}/api/notifications/send', task, config);
             
             alert("🚀 Alert Deployed Successfully!");
             

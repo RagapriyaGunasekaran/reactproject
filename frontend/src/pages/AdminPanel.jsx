@@ -10,7 +10,7 @@ const AdminPanel = () => {
         const token = localStorage.getItem('token');
         try {
             // Triggers a real-time push through the backend POST API [cite: 12, 17]
-            await axios.post('https://reactproject.onrender.com/api/notifications', 
+            await axios.post('${import.meta.env.VITE_API_URL}/api/notifications', 
                 { userId: targetUserId, message },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
