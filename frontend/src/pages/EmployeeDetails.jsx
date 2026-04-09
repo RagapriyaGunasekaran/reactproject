@@ -8,18 +8,28 @@ const EmployeeDetails = () => {
 
     useEffect(() => {
         const fetchEmployees = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const res = await axios.get('${import.meta.env.VITE_API_URL}/api/notifications/employees', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setEmployees(res.data);
-                setLoading(false);
-            } catch (err) {
-                console.error("Error fetching directory:", err);
-                setLoading(false);
-            }
-        };
+    try {
+        const token = localStorage.getItem('token');
+        
+        // Use BACKTICKS ( ` ) here, not single quotes
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/notifications/employees`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        // Add a safety check: Only set if the data is an array
+        if (Array.isArray(res.data)) {
+            setEmployees(res.data);
+        } else {
+            console.error("Data received is not an array:", res.data);
+            setEmployees([]); 
+        }
+        
+        setLoading(false);
+    } catch (err) {
+        console.error("Error fetching directory:", err);
+        setLoading(false);
+    }
+};
         fetchEmployees();
     }, []);
 
