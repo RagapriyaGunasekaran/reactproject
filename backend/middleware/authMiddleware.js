@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const protect = (req, res, next) => {
     let token = req.headers.authorization;
-
+    
     if (token && token.startsWith('Bearer')) {
         try {
             // Extract token from "Bearer <token>"
