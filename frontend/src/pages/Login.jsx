@@ -11,16 +11,15 @@ const Login = () => {
     const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('${import.meta.env.VITE_API_URL}/api/auth/login', { email, password });
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
         
         // 1. Log the response to see exactly what the backend is sending
         console.log("Login Response Data:", res.data);
 
-        // 2. Store user data safely
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('role', res.data.role); 
-        localStorage.setItem('username', res.data.username);
-
+        // Inside your login success function
+localStorage.setItem("token", response.data.token);
+localStorage.setItem("role", response.data.user.role); // Ensure 'role' is stored
+localStorage.setItem("name", response.data.user.name); // This fixes the 'undefined'
         // FIXED LINE: res.data.userId matches the backend key
         localStorage.setItem('userId', res.data.userId); 
 
