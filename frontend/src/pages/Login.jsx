@@ -13,24 +13,21 @@ const Login = () => {
     try {
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
         
-        // 1. Log the response to see exactly what the backend is sending
         console.log("Login Response Data:", res.data);
 
-        // Inside your login success function
-localStorage.setItem("token", response.data.token);
-localStorage.setItem("role", response.data.user.role); // Ensure 'role' is stored
-localStorage.setItem("name", response.data.user.name); // This fixes the 'undefined'
-        // FIXED LINE: res.data.userId matches the backend key
-        localStorage.setItem('userId', res.data.userId); 
+        // Use 'res' because that is what you named your variable above
+        localStorage.setItem('role', res.data.role); 
+        localStorage.setItem('username', res.data.username); 
+        localStorage.setItem('name', res.data.username); // Add this line to cover both bases!
+        localStorage.setItem("userId", res.data.userId); 
 
-        // 3. Dynamic Redirect
+        // Redirect based on the role
         if (res.data.role === 'admin') {
             navigate('/manager-dashboard');
         } else {
             navigate('/dashboard');
         }
     } catch (err) {
-        // Show the actual error message from the backend if possible
         alert(err.response?.data?.error || "Login Failed: Check server or credentials");
     }
 };
